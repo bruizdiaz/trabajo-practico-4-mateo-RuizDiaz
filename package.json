@@ -1,0 +1,31 @@
+{
+	"name": "trabajo-practico-4-mateo-ruizdiaz",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bruizdiaz/trabajo-practico-4-mateo-RuizDiaz.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "module",
+	"bugs": {
+		"url": "https://github.com/bruizdiaz/trabajo-practico-4-mateo-RuizDiaz/issues"
+	},
+	"homepage": "https://github.com/bruizdiaz/trabajo-practico-4-mateo-RuizDiaz#readme",
+	"dependencies": {
+		"dotenv": "^16.5.0",
+		"express": "^5.1.0",
+		"morgan": "^1.10.0",
+		"mysql2": "^3.14.1",
+		"sequelize": "^6.37.7"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.10"
+	}
+}
