@@ -50,11 +50,11 @@ Crea un archivo `.env` en la raíz del proyecto. Puedes copiar el archivo de eje
 # Puerto en el que correrá la aplicación
 PORT=3000
 
-# Configuración de la Base de Datos (Ejemplo para PostgreSQL)
+# Configuración de la Base de Datos (Ejemplo para MySQL y XAMPP)
 DB_USER=tu_usuario_de_db
-DB_PASSWORD=tu_contraseña_de_db
+DB_PASSWORD= ""
 DB_HOST=localhost
-DB_PORT=5432
+DB_PORT=host
 DB_NAME=nombre_de_tu_db
 ```
 
@@ -63,8 +63,7 @@ DB_NAME=nombre_de_tu_db
 Una vez configurado, puedes iniciar el servidor con el siguiente comando:
 
 ```bash
-npm start
-# O si no tienes un script 'start' definido:
+npm run dev
 node index.js
 ```
 
