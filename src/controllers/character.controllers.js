@@ -1,10 +1,7 @@
 //------------------------------------//
 //------------- IMPORT --------------//
 //----------------------------------//
-import express from 'express';
 import Character from '../models/character.model.js';
-import { channel } from 'diagnostics_channel';
-import { type } from 'os';
 
 export const getCharacters = async (req, res) => {
 	try {
@@ -102,5 +99,62 @@ export const createCharacter = async (req, res) => {
 	}
 };
 
-export const updateCharacter = async (req, res) => {};
-export const deleteCharacter = async (req, res) => {};
+export const updateCharacter = async (req, res) => {
+	try {
+		const { name, ki, race, gender, description } = req.body;
+		const id = req.params.id;
+		const character = await Character.findByPk(id);
+		const errors = [];
+
+		if (!character) {
+			errors.push({ message: 'Personaje no encontrado' });
+		}
+		if (!name || name === '' || typeof name !== 'string') {
+			errors.push({ message: 'Nombre inválido' });
+		}
+		if (!ki || typeof ki !== 'number') {
+			errors.push({ message: 'Ki inválido' });
+		}
+		if (!race || race === '' || typeof race !== 'string') {
+			errors.push({ message: 'Raza inválida' });
+		}
+		if (!gender || gender === '' || typeof gender !== 'string') {
+			errors.push({ message: 'Género inválido' });
+		}
+		if (errors.length > 0) {
+			return res.status(400).json({ errors });
+		}
+
+		const updatedCharacter = {
+			name: name,
+			ki: ki,
+			race: race,
+			gender: gender,
+			description: description,
+		};
+
+		await character.update(updatedCharacter);
+
+		res.status(200).json({
+			message: 'Character updated successfully',
+			character: updatedCharacter,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ error: error.message });
+	}
+};
+export const deleteCharacter = async (req, res) => {
+	try {
+		const id = req.params.id;
+		const character = await Character.findByPk(id);
+		if (!character) {
+			return res.status(404).json({ message: 'Personaje no encontrado' });
+		}
+		await character.destroy();
+		res.status(200).json({ message: 'Character deleted successfully' });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ error: error.message });
+	}
+};
