@@ -1,8 +1,12 @@
+//------------------------------------//
+//------------- IMPORT --------------//
+//----------------------------------//
 import dotenv from 'dotenv';
 dotenv.config();
 import { Sequelize } from 'sequelize';
 
-export const sequelize = new Sequelize(
+// DB Connection
+const sequelize = new Sequelize(
 	process.env.DB_NAME,
 	process.env.DB_USER,
 	process.env.DB_PASSWORD,
@@ -12,6 +16,7 @@ export const sequelize = new Sequelize(
 	},
 );
 
+//DB initialization
 export const initDB = async () => {
 	try {
 		await sequelize.authenticate();
@@ -21,3 +26,5 @@ export const initDB = async () => {
 		console.error('Error al conectar a la base de datos:', err);
 	}
 };
+
+export default sequelize;

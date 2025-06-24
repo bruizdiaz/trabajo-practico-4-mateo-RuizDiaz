@@ -9,9 +9,10 @@ const Character = sequelize.define('Character', {
 	name: {
 		type: DataTypes.STRING(50),
 		allowNull: false,
+		unique: true,
 	},
 	ki: {
-		type: DataTypes.NUMBER(20),
+		type: DataTypes.INTEGER(20),
 		allowNull: false,
 	},
 	race: {
